@@ -35,6 +35,7 @@ export class UserService {
       const wallet = walletRepo.create({
         user: newUser,
       });
+
       await walletRepo.save(wallet);
 
       return { user: newUser.toResponseObject(), wallet };
@@ -64,6 +65,6 @@ export class UserService {
       throw new NotFoundException('User not found');
     }
 
-    return user.toResponseObject();
+    return { ...user.toResponseObject(), wallet_id: user.wallet.id };
   }
 }
