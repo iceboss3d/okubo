@@ -2,9 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Wallet } from '../../wallet/Entities/wallet.entity';
 
 @Entity('users')
 export class User {
@@ -31,6 +34,10 @@ export class User {
 
   @Column({ nullable: false })
   phone_number: string;
+
+  @OneToOne(() => Wallet, (wallet) => wallet.user)
+  @JoinColumn()
+  wallet: Wallet;
 
   toResponseObject() {
     const {
