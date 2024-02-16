@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { dataSourceOptions } from './common/db/data-source.db';
 import { WalletModule } from './wallet/wallet.module';
+import { CustomHttpModule } from './custom-http/custom-http.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { WalletModule } from './wallet/wallet.module';
     UserModule,
     AuthModule,
     WalletModule,
+    CustomHttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],

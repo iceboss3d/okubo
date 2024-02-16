@@ -3,11 +3,13 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Wallet } from '../../wallet/Entities/wallet.entity';
+import { Card } from '../../wallet/Entities/card.entity';
 
 @Entity('users')
 export class User {
@@ -38,6 +40,9 @@ export class User {
   @OneToOne(() => Wallet, (wallet) => wallet.user)
   @JoinColumn()
   wallet: Wallet;
+
+  @OneToMany(() => Card, (card) => card.user)
+  cards: Card[];
 
   toResponseObject() {
     const {
